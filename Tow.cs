@@ -20,6 +20,8 @@ namespace Oxide.Plugins
             public float JointBreakForce { get; set; } = 30000f;
             public float JointBreakTorque { get; set; } = 30000f;
             public bool RequireVehicleOwnership { get; set; } = true;
+            public bool EnableDebugLogging { get; set; } = false;
+            public VersionNumber Version { get; set; } = new VersionNumber(0, 1, 0);
         }
 
         protected override void LoadConfig()
@@ -29,9 +31,19 @@ namespace Oxide.Plugins
             {
                 config = Config.ReadObject<Configuration>();
                 if (config == null) LoadDefaultConfig();
+                
+                // Check for version mismatch and handle upgrades
+                var currentVersion = new VersionNumber(0, 1, 0);
+                if (config.Version < currentVersion)
+                {
+                    LogDebug($"Upgrading config from version {config.Version} to {currentVersion}");
+                    config.Version = currentVersion;
+                    SaveConfig();
+                }
             }
-            catch 
+            catch (Exception ex)
             {
+                LogDebug($"Error loading config: {ex.Message}");
                 LoadDefaultConfig();
             }
             SaveConfig();
@@ -55,10 +67,22 @@ namespace Oxide.Plugins
         }
         private readonly Dictionary<ulong, TowLink> active = new Dictionary<ulong, TowLink>(); // key = towing car netID
         private readonly Dictionary<ulong, float> cooldowns = new Dictionary<ulong, float>();
+        private bool initialized;
+
         void Init()
         {
             permission.RegisterPermission(PERM, this);
             timer.Every(5f, CheckLinks);
+            initialized = true;
+            LogDebug("TowCars plugin initialized successfully");
+        }
+
+        void LogDebug(string message)
+        {
+            if (config?.EnableDebugLogging ?? false)
+            {
+                Puts($"[TowCars] {message}");
+            }
         }
         #region Commands
         [Command("tow")]
@@ -108,6 +132,7 @@ namespace Oxide.Plugins
             }
             active[carA.net.ID] = newLink;
             cooldowns[bp.userID] = Time.realtimeSinceStartup + config.Cooldown;
+            LogDebug($"Tow attached: {carA.net.ID} -> {carB.net.ID} by {bp.UserIDString}");
             p.Reply("Tow attached. Use /tow again to release.");
         }
         #endregion
@@ -215,6 +240,7 @@ namespace Oxide.Plugins
             if (link.Joint != null) GameObject.Destroy(link.Joint);
             if (link.A?.rigidbody != null) link.A.rigidbody.drag = link.Drag;
             active.Remove(link.A.net.ID);
+            LogDebug($"Tow detached: {link.A?.net.ID} -> {link.B?.net.ID}");
             if (notify) SendInfo(link.A, "Tow released.");
         }
         void SendInfo(BaseEntity car, string msg)
@@ -261,7 +287,18 @@ namespace Oxide.Plugins
         }
         void OnJointBreak(float breakForce, ConfigurableJoint joint)
         {
-            // Find which link this broken joint belongs to
+            // Find which link this was
+            foreach (var kv in new Dictionary<ulong, TowLink>(active))
+            {
+                if (kv.Value.Joint == joint)
+                {
+                    Detach(kv.Value, notify: true);
+                    LogDebug($"Tow joint broke with force: {breakForce}");
+                    break;
+                }
+            }
+        }
+    }
             foreach (var kv in new Dictionary<ulong, TowLink>(active))
             {
                 if (kv.Value.Joint == joint)
