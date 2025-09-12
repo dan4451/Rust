@@ -9,18 +9,24 @@ towcars.use - Required to use the /tow command
 To set up the permissions on a Rust server:
 
 To grant permission to a specific player:
+```
 oxide.grant user <player_name> towcars.use
-
+```
 To grant permission to a group:
+```
 oxide.grant group <group_name> towcars.use
-
+```
 To remove permission from a player:
+```
 oxide.revoke user <player_name> towcars.use
-
+```
 To remove permission from a group:
+```
 oxide.revoke group <group_name> towcars.use
+```
 
 Configuration options that affect the towing behavior:
+```
 {
   "DragMultiplier": 1.25,        // Multiplier for towing vehicle's drag
   "MaxDistance": 40.0,           // Maximum distance before tow breaks
@@ -30,5 +36,5 @@ Configuration options that affect the towing behavior:
   "RequireVehicleOwnership": true,// Whether players need to own/have access to the vehicle to tow it
   "EnableDebugLogging": false     // Enable detailed logging for troubleshooting
 }
-
+```
 The plugin will automatically check for permissions when the command is used and will enforce any configuration restrictions that are set.
