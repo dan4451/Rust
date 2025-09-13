@@ -105,8 +105,8 @@ namespace Oxide.Plugins
             public float MaxDriveForce          = 20000f;
 
             // Break thresholds (soft break handled by limit/damper; keep high)
-            public float BreakForce             = 300000f;
-            public float BreakTorque            = 300000f;
+            public float BreakForce             = 3000000f;
+            public float BreakTorque            = 3000000f;
 
             // Separation (now scaled in code; this is a floor)
             public float MaxSeparationDistance  = 18f;
