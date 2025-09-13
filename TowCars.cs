@@ -7,7 +7,7 @@ using UnityEngine;
 
 namespace Oxide.Plugins
 {
-    [Info("TowCars", "yourname", "0.1.0")]
+    [Info("TowCars", "dan4451", "0.1.0")]
     [Description("Tow one car with another using a physics joint")]
     public class TowCars : CovalencePlugin
     {
