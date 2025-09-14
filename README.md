@@ -35,15 +35,20 @@ oxide.revoke group <group_name> BiTurbo.use
 The plugin will automatically check for permissions when the command is used and will enforce any configuration restrictions that are set.
 
 ### About TowCars
-Commands:
+Usage
 
-/tow - The main command to toggle towing. When used:
-If not towing: Attempts to tow a vehicle in front of you
-If already towing: Releases the current tow connection
-Permissions:
+Equip a Hammer (or configured Tow Hook tool).
+Middle-click (Mouse3) on the first car to set the first hook.
+Middle-click on a second car to complete the link.
+A tow rope will appear, and the cars are now connected.
 
-towcars.use - Required to use the /tow command
-To set up the permissions on a Rust server:
+Releasing
+
+Middle-click on either of the linked cars to release the tow strap.
+If cars drift too far apart, the strap will automatically break.
+
+Canceling Selection
+If you’ve set the first hook but change your mind, press Reload (R) to cancel selection.
 
 To grant permission to a specific player:
 ```
