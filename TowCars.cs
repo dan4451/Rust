@@ -9,7 +9,7 @@ using System.Globalization;
 
 namespace Oxide.Plugins
 {
-    [Info("TowCars", "chatgpt", "1.1.0")]
+    [Info("TowCars", "S0F1st1Kt3dB3ar", "1.1.0")]
     [Description("Use the Hammer's middle-click to link two modular cars with a tow strap")]
     public class TowCars : CovalencePlugin
     {

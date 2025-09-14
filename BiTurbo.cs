@@ -7,7 +7,7 @@ using Rust;
 
 namespace Oxide.Plugins
 {
-    [Info("BiTurbo", "chatgpt", "0.3.0")]
+    [Info("BiTurbo", "S0F1st1Kt3dB3ar", "0.3.0")]
     [Description("Turbo-style acceleration for modular cars: hold right-click; boost spools above a speed gate and spits flames.")]
     public class BiTurbo : CovalencePlugin
     {
