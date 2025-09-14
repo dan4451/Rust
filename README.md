@@ -1,9 +1,11 @@
 ## README for Plugin Info
 
-BiTurbo plugin
+**BiTurbo plugin**
+
 All modular cars are now equiped with a turbo and are tuned to deliver more horsepower. Just hold right click to open the wastegate and prepare to see some flames in your wake!
 
-TowCars plugin
+**TowCars plugin**
+
 I wanted to give some more utility to cars in rust. Sometimes I want to pull other cars around and this plugin will let you do that. 
 First take out your hammer 
 Next middle click on the car you are pulling with
