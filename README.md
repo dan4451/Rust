@@ -48,6 +48,7 @@ Middle-click on either of the linked cars to release the tow strap.
 If cars drift too far apart, the strap will automatically break.
 
 Canceling Selection
+
 If you’ve set the first hook but change your mind, press Reload (R) to cancel selection.
 
 To grant permission to a specific player:
