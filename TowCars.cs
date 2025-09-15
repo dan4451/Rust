@@ -493,8 +493,8 @@ namespace Oxide.Plugins
                 // joint validity
                 if (link.Joint == null)
                 {
-                    // ADD before SafeRelease so joint anchors exist to play SFX at mid-point
-                    if (config.PlaySoundOnBreak) PlaySfxAtLinkMid(link, config.SoundPathOnBreak);
+                    // ADD before SafeRelease so joint anchors exist to play SFX at mid-point (louder multi-fire)
+                    if (config.PlaySoundOnBreak) PlayLouderSfxAtLinkMid(link, config.SoundPathOnBreak);
 
                     // extra info in case joint broke
                     InfoToDrivers(link, "Tow strap broke.");
@@ -749,8 +749,8 @@ namespace Oxide.Plugins
             {
                 if (l?.Joint == joint)
                 {
-                    // ADD before SafeRelease so joint anchors exist to play SFX at mid-point
-                    if (config.PlaySoundOnBreak) PlaySfxAtLinkMid(l, config.SoundPathOnBreak);
+                    // ADD before SafeRelease so joint anchors exist to play SFX at mid-point (louder multi-fire)
+                    if (config.PlaySoundOnBreak) PlayLouderSfxAtLinkMid(l, config.SoundPathOnBreak);
 
                     InfoToDrivers(l, "Tow strap broke.");
                     SafeRelease(l, notify: false, reason: "joint break");
@@ -800,6 +800,16 @@ namespace Oxide.Plugins
 
             var mid = GetLinkMid(link);
             PlayFx(path, mid); // broadcast world sound
+        }
+
+        private void PlayLouderSfxAtLinkMid(TowLink link, string path)
+        {
+            if (link == null || string.IsNullOrEmpty(path)) return;
+            var mid = GetLinkMid(link);
+            for (int i = 0; i < 3; i++)
+            {
+                PlayFx(path, mid);
+            }
         }
 
 
