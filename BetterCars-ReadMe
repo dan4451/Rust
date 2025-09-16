@@ -1,0 +1,56 @@
+## README for Plugin Info
+
+**Better Cars**
+
+Improves modular car suspension, grip, and roll control with presets and per-axle tuning.
+
+
+**Features**
+
+Adjust suspension spring and damper values per axle.
+
+Control ride height and suspension travel.
+
+Apply preset handling profiles (balanced, sporty, off-road).
+
+Customize roll control and grip for smoother driving.
+
+Easy config file with adjustable values.
+
+
+**Permissions**
+
+bettercars.use – Required for a player to benefit from custom handling.
+
+
+*Configuration*
+
+The plugin generates a config file on first run. Here are the main values:
+
+**Preset Parameters**
+
+FrontSpring (float) – Spring stiffness for front axle (default: 38000).
+
+RearSpring (float) – Spring stiffness for rear axle (default: 42000).
+
+FrontDamper (float) – Damping force for front shocks (default: 2800).
+
+RearDamper (float) – Damping force for rear shocks (default: 3000).
+
+SuspDistance (float) – Suspension travel distance in meters (default: 0.20).
+
+TargetPos (float) – Suspension neutral position (0–1 scale, default: 0.5).
+
+**Handling & Stability*
+
+GripMultiplier (float) – Adjusts tire traction.
+
+AntiRollStrength (float) – Controls roll stabilization when cornering.
+
+Downforce (float) – Adds stability at higher speeds.
+
+**Misc**
+
+EnablePresets (bool) – If true, players can choose from preset handling modes.
+
+DebugLog (bool) – Logs applied values for troubleshooting.
