@@ -9,7 +9,7 @@ using Network;
 
 namespace Oxide.Plugins
 {
-    [Info("BetterCars", "S0F1st1Kt3dB3ar + Dan", "0.9.0")]
+    [Info("BetterCars", "S0F1st1Kt3dB3ar", "0.9.0")]
     [Description("Improves modular car suspension, grip, and roll control with presets and per-axle tuning.")]
     public class BetterCars : CovalencePlugin
     {
